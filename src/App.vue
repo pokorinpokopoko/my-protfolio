@@ -1,35 +1,47 @@
 <template>
+  <!-- スマホ用ヘッダー -->
+  <header class="top-bar-sp">
+    <button class="menu-button" @click="toggleMenu">
+      <i class="fa-solid fa-bars" v-if="!isOpen"></i>
+      <i class="fa-solid fa-xmark" v-else></i>
+    </button>
+    <nav class="navmenu" v-show="isOpen">
+      <ul>
+        <li><a href="#about" @click="closeMenu">ABOUT</a></li>
+        <li><a href="#price" @click="closeMenu">PRICE</a></li>
+        <li><a href="#reserve" @click="closeMenu">RESERVE</a></li>
+        <li><a href="#access" @click="closeMenu">ACCESS</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <!-- ヘッダー -->
   <nav class="top-bar" :style="{ borderBottom: '4px solid' + currentSlide.color }">
-    <div class="bar-fix">
+    <div class="bar-flex">
       <div class="bar-contents">
         <a href="#about">
           <span>ABOUT</span>
+          <p :style="{ color: currentSlide.color }">お店について</p>
         </a>
-        <h4 :style="{ color: currentSlide.color }">お店について</h4>
       </div>
       <div class="bar-contents">
         <a href="#price">
           <span>PRICE</span>
+          <p :style="{ color: currentSlide.color }">料金プラン</p>
         </a>
-        <h4 :style="{ color: currentSlide.color }">料金プラン</h4>
       </div>
       <div class="bar-contents">
         <a href="#reserve">
           <span>RESERVE</span>
+          <p :style="{ color: currentSlide.color }">LINE予約</p>
         </a>
-        <h4 :style="{ color: currentSlide.color }">LINE予約</h4>
       </div>
       <div class="bar-contents">
         <a href="#access">
           <span>ACCESS</span>
+          <p :style="{ color: currentSlide.color }">アクセス</p>
         </a>
-        <h4 :style="{ color: currentSlide.color }">アクセス</h4>
       </div>
-      <!-- <div class="bar-contents">
-        <h1>MENU</h1>
-        <h4 :style="{ color: currentSlide.color }">メニュー</h4>
-      </div> -->
     </div>
   </nav>
   <!-- スライドショー -->
@@ -38,7 +50,6 @@
       <img :src="currentSlide.img" alt="スタジオの外観" loading="lazy" />
       <h1 class="consept">ポップな<br />写真が撮れる<br />撮影スタジオ</h1>
     </div>
-    <!-- <button @click="nextSlide">NEXT</button> -->
   </section>
 
   <!-- テスト -->
@@ -66,7 +77,7 @@
         <div class="reverve-flex">
           <div class="line-link">
             <a
-              href="https://lin.ee/abc123"
+              href="https://lin.ee/UblIDG8"
               class="line-button"
               target="_blank"
               rel="noopener noreferrer"
@@ -78,15 +89,7 @@
                 class="line-icon"
                 loading="lazy"
               />
-              <!-- <span>LINEで問い合わせはこちらから！</span> -->
             </a>
-            <!-- <a href="https://lin.ee/abc123" target="_blank" rel="noopener noreferrer">
-          <img
-            class="line-banar"
-            src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"
-            alt="LINEで友だち追加"
-          />
-        </a> -->
           </div>
           <div class="reserve-contents">
             <p>簡単1STEP！<br />公式LINEを追加して簡単予約！</p>
@@ -99,15 +102,13 @@
     <FadeInOnScroll direction="right">
       <section class="box box-d" id="access">
         <h2>ACCESS</h2>
-
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6563.509613604946!2d135.50314355!3d34.6608947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e742446b2055%3A0x4a890021a83a6e86!2z6I-K5LmL5aW977yI5qCq77yJ!5e0!3m2!1sja!2sjp!4v1747811546241!5m2!1sja!2sjp"
-          width="600"
-          height="450"
           style="border: 0"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
+          alt="マップ"
         ></iframe>
         <p>--------------</p>
       </section>
@@ -122,7 +123,7 @@
       v-for="image in images"
       :key="index"
       :src="image"
-      alt="スタジオの外観"
+      alt="作品集"
       loading="lazy"
     />
   </FadeInOnScroll>
@@ -134,13 +135,16 @@
         <img class="logo-img" src="/logo.jpeg" alt="ロゴ" loading="lazy" />
       </div>
       <section class="sns-icons">
-        <a href="">
+        <a href="https://lin.ee/UblIDG8" alt="LINE">
           <i class="fa-brands fa-line"></i>
         </a>
-        <a href="">
+        <a
+          href="https://www.instagram.com/studiowolf25?igsh=MXVrN2t1NHRoN2Y4Zw=="
+          alt="インスタグラム"
+        >
           <i class="fa-brands fa-instagram"></i>
         </a>
-        <a href="">
+        <a href="" alt="X">
           <i class="fa-brands fa-x-twitter"></i>
         </a>
       </section>
@@ -151,15 +155,22 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-//  テスト
 import FadeInOnScroll from './components/FadeInOnScroll.vue'
-//  テスト
+
+// スマホ用ヘッダー
+const isOpen = ref(false)
+const toggleMenu = () => {
+  isOpen.value = !isOpen.value
+}
+const closeMenu = () => {
+  isOpen.value = false
+}
 
 // スライドショー
 const slides = [
-  { img: '/images001.png', color: '#FF3399' },
-  { img: '/images002.jpeg', color: '#0033FF' },
-  { img: '/images003.jpeg', color: '#FF9900' },
+  { img: '/intro-img1.jpg', color: '#FF3399' },
+  { img: '/intro-img2.jpg', color: '#0033FF' },
+  { img: '/intro-img3.jpg', color: '#FF9900' },
 ]
 
 const currentIndex = ref(0)
@@ -191,19 +202,57 @@ const images = ['/images001.png', '/images002.jpeg', '/images003.jpeg', '/images
 <!-- グリッド -->
 
 <style scoped>
-/* ヘッダー */
-.top-bar {
-  margin-bottom: 16px;
-  width: 100%;
-  height: var(--header-height);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 3;
-  background-color: rgba(255, 255, 255, 0.8);
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.bar-fix {
+/* スマホ用ヘッダー */
+.top-bar-sp {
+  text-align: right;
+  position: relative;
+  z-index: 1;
+  height: 5%;
+}
+.menu-button {
+  position: relative;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  z-index: 2;
+  /* cursor: pointer; */
+}
+
+.navmenu {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  height: 20vh;
+  transition: all 0.6s ease;
+}
+
+.navmenu > ul {
+  list-style: none;
+  margin: 30px;
+}
+
+.navmenu > ul > li > a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  margin: 16px;
+}
+
+/* ヘッダー */
+.top-bar {
+  display: none;
+}
+
+.bar-flex {
   display: flex;
   justify-content: flex-end;
   padding: 16px;
@@ -231,14 +280,16 @@ const images = ['/images001.png', '/images002.jpeg', '/images003.jpeg', '/images
   font-weight: bold;
 }
 
-.bar-contents > h4 {
-  margin: 0;
+.bar-contents > a > p {
+  margin: 10px auto;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 /* スライドショー */
 .slideshow-wrapper {
   transition: background-color 0.5s ease;
-  margin-top: 100px;
+  margin-top: 10px;
   padding: 8px;
   /* min-height: 300px; */
   color: #333;
@@ -250,51 +301,34 @@ const images = ['/images001.png', '/images002.jpeg', '/images003.jpeg', '/images
 }
 
 img {
-  height: 500px;
+  height: 40vh;
   width: 100%;
   object-fit: cover;
 }
-
-/* button {
-  padding: 0.5rem 1rem;
-  margin-top: 16px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 50%;
-  background: white;
-  color: rgba(0, 0, 0);
-} */
 
 .consept {
   margin: 0;
   padding: 0;
   color: white;
-  font-size: 80px;
+  font-size: 52px;
   opacity: 0.8;
   font-weight: bold;
   position: absolute;
-  top: 80px;
+  top: 130px;
   left: 16px;
   font-family: 'Hiragino Sans W7';
   z-index: 1;
 }
 
-/* テスト */
-/* main {
-  padding: 100px;
-} */
-
 .box {
-  margin: 80px 0;
-  padding: 16px 40px;
-  /* border-radius: 8px; */
-  font-size: 1.5rem;
+  margin: 24px 0;
+  padding: 16px;
+  font-size: 20px;
   width: 80%;
-  /* text-align: center; */
 }
 
 .box > h2 {
-  font-size: 80px;
+  font-size: 35px;
   margin: 0;
   padding: 0;
   color: white;
@@ -303,21 +337,28 @@ img {
 
 .box-a {
   background: #0033ff;
-  /* background-image: radial-gradient(rgba(255, 255, 255, 0.5) 8px, transparent 5px); */
   background-size: 40px 40px;
-  text-align: left;
+  text-align: center;
   margin-right: auto;
+}
+
+.box-a > h2 {
+  text-align: left;
 }
 
 .box-b {
   background: #ff3399;
-  text-align: right;
+  text-align: center;
   margin-left: auto;
 }
 
+.box-b > h2 {
+  text-align: right;
+}
+
 .line-link {
-  min-width: 48px;
-  min-height: 48px;
+  /* min-width: 30px;
+  min-height: 30px; */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -325,50 +366,59 @@ img {
 
 .reverve-flex {
   display: flex;
-  padding: 16px;
   justify-content: space-around;
+  padding: 16px;
 }
 
 .reserve-contents > p {
   color: white;
-  text-align: left;
-  margin: auto 50px;
+  text-align: center;
+  margin-left: 24px;
 }
 
 .line-icon {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
 }
 
 .box-c {
   background: #ff9900;
-  text-align: left;
+  text-align: center;
   margin-right: auto;
+}
+
+.box-c > h2 {
+  text-align: left;
 }
 
 .box-d {
   background: #00cc33;
-  text-align: right;
+  text-align: center;
   margin-left: auto;
 }
 
+.box-d > h2 {
+  text-align: right;
+}
+
 iframe {
-  margin-top: 30px;
+  margin: 30px auto;
+  width: 100%;
+  height: 300px;
 }
 
 /* グリッド */
 .grid {
   display: flex;
-  padding: 40px;
-  /* flex-direction: row; */
   flex-wrap: wrap;
+  margin: 32px 0;
 }
 
 .grid-img {
   width: 40%;
   margin: 2% 5%;
-  height: 350px;
+  height: 40%;
 }
 
 /* フッダー */
@@ -384,13 +434,11 @@ footer {
 }
 
 .logo-img {
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
 }
 
 .sns-icons {
-  height: 100px;
-  width: 400px;
   display: flex;
   justify-content: space-around;
   min-width: 48px;
@@ -399,29 +447,265 @@ footer {
 
 .sns-icons > a {
   display: block;
-  width: 100px;
   text-decoration: none;
   color: white;
-  font-size: 100px;
 }
 
 .sns-icons > a > i {
   display: block;
-  width: 100%;
-  height: 100%;
-  font-size: 100px;
+  margin: auto 16px;
+  font-size: 40px;
   text-align: center;
 }
 
 small {
   display: block;
   color: white;
-  font-size: 20px;
+  font-size: 10px;
   text-align: center;
   margin: 16px auto;
 }
 
 @media (min-width: 768px) {
+  /* ヘッダー */
+  .top-bar-sp {
+    display: none;
+  }
+
+  .top-bar {
+    display: block;
+    margin-bottom: 16px;
+    width: 100%;
+    height: var(--header-height);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .bar-flex {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+  }
+
+  .bar-contents {
+    text-align: center;
+    width: 130px;
+    min-width: 48px;
+    min-height: 48px;
+    /* display: inline-flex; */
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bar-contents > a {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    color: black;
+  }
+
+  .bar-contents > a > span {
+    margin: 0;
+    font-weight: bold;
+  }
+
+  .bar-contents > a > p {
+    margin: 10px auto;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  /* スライドショー */
+  .slideshow-wrapper {
+    transition: background-color 0.5s ease;
+    margin-top: 100px;
+    padding: 8px;
+    /* min-height: 300px; */
+    color: #333;
+  }
+
+  .slide-content {
+    height: 35%;
+    position: relative;
+  }
+
+  img {
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .consept {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-size: 80px;
+    opacity: 0.8;
+    font-weight: bold;
+    position: absolute;
+    top: 80px;
+    left: 16px;
+    font-family: 'Hiragino Sans W7';
+    z-index: 1;
+  }
+
+  .box {
+    margin: 80px 0;
+    padding: 16px 40px;
+    /* border-radius: 8px; */
+    font-size: 1.5rem;
+    width: 80%;
+    /* text-align: center; */
+  }
+
+  .box > h2 {
+    font-size: 80px;
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: Impact;
+  }
+
+  .box-a {
+    background: #0033ff;
+    /* background-image: radial-gradient(rgba(255, 255, 255, 0.5) 8px, transparent 5px); */
+    background-size: 40px 40px;
+    text-align: center;
+    margin-right: auto;
+  }
+
+  .box-a > h2 {
+    text-align: left;
+  }
+
+  .box-b {
+    background: #ff3399;
+    text-align: center;
+    margin-left: auto;
+  }
+
+  .box-b > h2 {
+    text-align: right;
+  }
+
+  .line-link {
+    min-width: 48px;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .reverve-flex {
+    display: flex;
+    padding: 16px;
+    justify-content: space-around;
+  }
+
+  .reserve-contents > p {
+    color: white;
+    text-align: left;
+    margin: auto 50px;
+  }
+
+  .line-icon {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .box-c {
+    background: #ff9900;
+    text-align: center;
+    margin-right: auto;
+  }
+
+  .box-c > h2 {
+    text-align: left;
+  }
+
+  .box-d {
+    background: #00cc33;
+    text-align: center;
+    margin-left: auto;
+  }
+
+  .box-d > h2 {
+    text-align: right;
+  }
+
+  iframe {
+    margin: 30px auto;
+    width: 100%;
+    height: 50vh;
+  }
+
+  /* グリッド */
+  .grid {
+    display: flex;
+    padding: 40px;
+    /* flex-direction: row; */
+    flex-wrap: wrap;
+  }
+
+  .grid-img {
+    width: 40%;
+    margin: 2% 5%;
+    height: 350px;
+  }
+
+  /* フッダー */
+  footer {
+    background: #ff9900;
+    height: 150px;
+    padding: 30px;
+  }
+
+  .footer-flex {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .logo-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .sns-icons {
+    height: 100px;
+    width: 400px;
+    display: flex;
+    justify-content: space-around;
+    min-width: 48px;
+    min-height: 48px;
+  }
+
+  .sns-icons > a {
+    display: block;
+    width: 100px;
+    text-decoration: none;
+    color: white;
+    font-size: 100px;
+  }
+
+  .sns-icons > a > i {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 100px;
+    text-align: center;
+  }
+
+  small {
+    display: block;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    margin: 16px auto;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -448,10 +732,6 @@ small {
   .box > h1 {
     font-size: 100px;
   }
-
-  /* .reserve-contents  {
-    justify-content: space-between;
-  } */
 
   .reserve-contents > p {
     font-size: 50px;
