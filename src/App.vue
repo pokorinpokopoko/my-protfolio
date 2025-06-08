@@ -1,6 +1,6 @@
 <template>
   <!-- スマホ用ヘッダー -->
-  <header class="top-bar-sp">
+  <header class="top-bar-sp" id="header">
     <button class="menu-button" @click="toggleMenu">
       <i class="fa-solid fa-bars" v-if="!isOpen"></i>
       <i class="fa-solid fa-xmark" v-else></i>
@@ -47,7 +47,7 @@
   <!-- スライドショー -->
   <section :style="{ backgroundColor: currentSlide.color }" class="slideshow-wrapper">
     <div class="slide-content">
-      <img :src="currentSlide.img" alt="スタジオの外観" loading="lazy" />
+      <a href="#header"><img :src="currentSlide.img" alt="スタジオの外観" loading="lazy" /></a>
       <h1 class="consept">ポップな<br />写真が撮れる<br />撮影スタジオ</h1>
     </div>
   </section>
@@ -58,7 +58,9 @@
     <FadeInOnScroll direction="left">
       <section class="box box-a" id="about">
         <h2>ABOUT</h2>
-        <p>--------------</p>
+        <p>
+          コスプレイヤー専門コンカフェ「星狼」の運営チームが手がける、コスプレイヤーによる、コスプレイヤーのための撮影スタジオが誕生！<br />実際にコスプレを愛するスタッフが「本当に欲しかった」空間を形にしました。<br />背景・小道具・ライティングまで、すべてが“映える”仕様。<br />ポップで可愛い世界観から、非日常なシーンまで、あなたの「なりたい」が叶う場所です。<br />撮影初心者から上級者まで大歓迎。<br />あなたの表現がもっと自由になる、新しいスタジオ体験を。
+        </p>
       </section>
     </FadeInOnScroll>
 
@@ -66,7 +68,66 @@
     <FadeInOnScroll direction="right">
       <section class="box box-b" id="price">
         <h2>PRICE</h2>
-        <p>--------------</p>
+        <div class="table-wrapper">
+          <section class="price-table">
+            <h2>プレオープン料金表</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>時間</th>
+                  <th>料金</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>3h</td>
+                  <td>¥10,000</td>
+                </tr>
+                <tr>
+                  <td>4h</td>
+                  <td>¥13,000</td>
+                </tr>
+                <tr>
+                  <td>5h</td>
+                  <td>¥16,000</td>
+                </tr>
+                <tr>
+                  <td>6h</td>
+                  <td>¥19,000</td>
+                </tr>
+                <tr>
+                  <td>7h</td>
+                  <td>¥22,000</td>
+                </tr>
+                <tr>
+                  <td>8h</td>
+                  <td>¥25,000</td>
+                </tr>
+                <tr>
+                  <td>9h</td>
+                  <td>¥28,000</td>
+                </tr>
+                <tr>
+                  <td>10h</td>
+                  <td>¥31,000</td>
+                </tr>
+                <tr>
+                  <td>11h</td>
+                  <td>¥34,000</td>
+                </tr>
+                <tr>
+                  <td>12h</td>
+                  <td>¥37,000</td>
+                </tr>
+                <tr>
+                  <td>深夜プラン（22:00〜翌8:00）</td>
+                  <td>¥20,000</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="note">※ 商用利用は +¥3,000 / 1h<br />※ プレオープン価格で最大¥7,000オフ！</p>
+          </section>
+        </div>
       </section>
     </FadeInOnScroll>
 
@@ -110,7 +171,9 @@
           referrerpolicy="no-referrer-when-downgrade"
           alt="マップ"
         ></iframe>
-        <p>--------------</p>
+        <p>
+          〒５５６ー０００５ 大阪府大阪市浪速区日本橋３丁目１−１８ 菊乃好ビル ４階<br />なんば駅から徒歩11分・近鉄日本橋駅から徒歩6分<br />近隣にパーキングあり
+        </p>
       </section>
     </FadeInOnScroll>
   </main>
@@ -131,9 +194,7 @@
   <!-- フッダー -->
   <footer>
     <div class="footer-flex">
-      <div>
-        <img class="logo-img" src="/logo.jpeg" alt="ロゴ" loading="lazy" />
-      </div>
+      <a href="#header"><img src="/logo.png" alt="ロゴ" loading="lazy" class="logo" /></a>
       <section class="sns-icons">
         <a href="https://lin.ee/UblIDG8" alt="LINE">
           <i class="fa-brands fa-line"></i>
@@ -212,7 +273,7 @@ const images = ['/images001.png', '/images002.jpeg', '/images003.jpeg', '/images
   text-align: right;
   position: relative;
   z-index: 1;
-  height: 5%;
+  height: 10%;
 }
 .menu-button {
   position: relative;
@@ -328,11 +389,20 @@ img {
 }
 
 .box > h2 {
-  font-size: 35px;
+  font-size: 40px;
   margin: 0;
   padding: 0;
   color: white;
   font-family: Impact;
+}
+
+.box > p {
+  font-size: 16px;
+  margin: 0;
+  padding: 20px;
+  color: white;
+  text-align: left;
+  font-family: 'Hiragino Sans W7';
 }
 
 .box-a {
@@ -356,6 +426,49 @@ img {
   text-align: right;
 }
 
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.price-table {
+  min-width: 400px;
+  margin: 16px auto;
+  padding: 2em;
+  background: #fff0f5;
+  border: 2px solid #ccc;
+  font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
+  color: #333;
+}
+
+.price-table h2 {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 1em;
+  color: #ff3399;
+  font-family: 'Hiragino Sans W7';
+}
+
+.price-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.price-table th,
+.price-table td {
+  padding: 0.8em;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.price-table .note {
+  margin-top: 1em;
+  font-size: 1em;
+  font-weight: bold;
+  color: #ff3399;
+  font-family: 'Hiragino Sans W7';
+}
+
 .line-link {
   /* min-width: 30px;
   min-height: 30px; */
@@ -374,6 +487,7 @@ img {
   color: white;
   text-align: center;
   margin-left: 24px;
+  font-family: 'Hiragino Sans W7';
 }
 
 .line-icon {
@@ -386,6 +500,7 @@ img {
   background: #ff9900;
   text-align: center;
   margin-right: auto;
+  font-family: 'Hiragino Sans W7';
 }
 
 .box-c > h2 {
@@ -430,19 +545,20 @@ footer {
 
 .footer-flex {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  margin: auto 100px;
 }
 
-.logo-img {
-  width: 50px;
-  height: 50px;
+.logo {
+  display: block;
+  width: 80px;
+  height: 80px;
 }
 
 .sns-icons {
   display: flex;
   justify-content: space-around;
-  min-width: 48px;
-  min-height: 48px;
 }
 
 .sns-icons > a {
@@ -453,8 +569,9 @@ footer {
 
 .sns-icons > a > i {
   display: block;
-  margin: auto 16px;
-  font-size: 40px;
+  margin: 0 0 0 16px;
+  font-size: 60px;
+  line-height: 80px;
   text-align: center;
 }
 
@@ -660,18 +777,19 @@ small {
   /* フッダー */
   footer {
     background: #ff9900;
-    height: 150px;
+    height: 180px;
     padding: 30px;
   }
 
   .footer-flex {
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
   }
 
-  .logo-img {
-    width: 100px;
-    height: 100px;
+  .logo {
+    width: 150px;
+    height: 150px;
   }
 
   .sns-icons {
@@ -696,6 +814,7 @@ small {
     width: 100%;
     height: 100%;
     font-size: 100px;
+    line-height: 150px;
     text-align: center;
   }
 
