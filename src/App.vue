@@ -48,7 +48,10 @@
   <section :style="{ backgroundColor: currentSlide.color }" class="slideshow-wrapper">
     <div class="slide-content">
       <a href="#header"><img :src="currentSlide.img" alt="スタジオの外観" loading="lazy" /></a>
-      <h1 class="consept">ポップな<br />写真が撮れる<br />撮影スタジオ</h1>
+      <h1 class="consept">撮影スタジオ</h1>
+      <h2 class="consept-sub" v-if="currentIndex === 0">
+        コスプレイヤーによる<br />コスプレイヤーのための<br />コスプレスタジオ
+      </h2>
     </div>
   </section>
 
@@ -251,7 +254,7 @@ onUnmounted(() => {
 })
 
 // グリッド
-const images = ['/images001.png', '/images002.jpeg', '/images003.jpeg', '/images004.jpeg']
+const images = ['/intro-img1.jpg', '/intro-img2.jpg', '/intro-img3.jpg']
 </script>
 
 <style>
@@ -266,6 +269,12 @@ const images = ['/images001.png', '/images002.jpeg', '/images003.jpeg', '/images
 * {
   margin: 0;
   padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* スマホ用ヘッダー */
@@ -352,12 +361,10 @@ const images = ['/images001.png', '/images002.jpeg', '/images003.jpeg', '/images
   transition: background-color 0.5s ease;
   margin-top: 10px;
   padding: 8px;
-  /* min-height: 300px; */
   color: #333;
 }
 
 .slide-content {
-  height: 35%;
   position: relative;
 }
 
@@ -371,14 +378,37 @@ img {
   margin: 0;
   padding: 0;
   color: white;
-  font-size: 52px;
+  font-size: 40px;
   opacity: 0.8;
   font-weight: bold;
   position: absolute;
-  top: 130px;
-  left: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
   font-family: 'Hiragino Sans W7';
   z-index: 1;
+}
+
+.consept-sub {
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-size: 30px;
+  opacity: 0.8;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Hiragino Sans W7';
 }
 
 .box {
@@ -432,9 +462,8 @@ img {
 }
 
 .price-table {
-  min-width: 400px;
+  padding: .6em;
   margin: 16px auto;
-  padding: 2em;
   background: #fff0f5;
   border: 2px solid #ccc;
   font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
@@ -442,7 +471,7 @@ img {
 }
 
 .price-table h2 {
-  font-size: 1.5em;
+  font-size: 1em;
   text-align: center;
   margin-bottom: 1em;
   color: #ff3399;
@@ -456,14 +485,14 @@ img {
 
 .price-table th,
 .price-table td {
-  padding: 0.8em;
+  padding: 0.5em;
   border: 1px solid #ccc;
   text-align: center;
 }
 
 .price-table .note {
   margin-top: 1em;
-  font-size: 1em;
+  font-size: 0.7em;
   font-weight: bold;
   color: #ff3399;
   font-family: 'Hiragino Sans W7';
@@ -539,7 +568,6 @@ iframe {
 /* フッダー */
 footer {
   background: #ff9900;
-  height: 150px;
   padding: 30px;
 }
 
@@ -554,6 +582,7 @@ footer {
   display: block;
   width: 80px;
   height: 80px;
+  object-fit: contain;
 }
 
 .sns-icons {
@@ -645,7 +674,6 @@ small {
   }
 
   .slide-content {
-    height: 35%;
     position: relative;
   }
 
@@ -656,26 +684,20 @@ small {
   }
 
   .consept {
-    margin: 0;
-    padding: 0;
-    color: white;
     font-size: 80px;
-    opacity: 0.8;
-    font-weight: bold;
-    position: absolute;
-    top: 80px;
-    left: 16px;
-    font-family: 'Hiragino Sans W7';
-    z-index: 1;
+    top: 20px;
+  }
+
+  .consept-sub {
+    font-size: 50px;
+    top: 20%;
   }
 
   .box {
     margin: 80px 0;
     padding: 16px 40px;
-    /* border-radius: 8px; */
     font-size: 1.5rem;
     width: 80%;
-    /* text-align: center; */
   }
 
   .box > h2 {
@@ -688,7 +710,6 @@ small {
 
   .box-a {
     background: #0033ff;
-    /* background-image: radial-gradient(rgba(255, 255, 255, 0.5) 8px, transparent 5px); */
     background-size: 40px 40px;
     text-align: center;
     margin-right: auto;
@@ -706,6 +727,20 @@ small {
 
   .box-b > h2 {
     text-align: right;
+  }
+
+  .price-table table {
+    width: 80%;
+    margin:8px auto;
+    padding: 0;
+    border-collapse: collapse;
+  }
+
+  .price-table th,
+  .price-table td {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    text-align: center;
   }
 
   .line-link {
@@ -843,13 +878,28 @@ small {
   .consept {
     margin: 100px 0 0 100px;
     font-size: 150px;
-    line-height: 250px;
-    top: 80px;
-    left: 16px;
+    top: 0;
+  }
+
+  .consept-sub {
+    top: 30%;
+    font-size: 100px;
   }
 
   .box > h1 {
     font-size: 100px;
+  }
+
+  .box-a > p {
+    font-size: 32px;
+  }
+
+  .price-table h2 {
+    font-size: 2em;
+  }
+
+  .price-table .note {
+    font-size: 2em;
   }
 
   .reserve-contents > p {
