@@ -462,7 +462,7 @@ img {
 }
 
 .price-table {
-  padding: .6em;
+  padding: 0.6em;
   margin: 16px auto;
   background: #fff0f5;
   border: 2px solid #ccc;
@@ -731,7 +731,7 @@ small {
 
   .price-table table {
     width: 80%;
-    margin:8px auto;
+    margin: 8px auto;
     padding: 0;
     border-collapse: collapse;
   }
