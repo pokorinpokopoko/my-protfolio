@@ -48,8 +48,11 @@
   <section :style="{ backgroundColor: currentSlide.color }" class="slideshow-wrapper">
     <div class="slide-content">
       <a href="#header"><img :src="currentSlide.img" alt="スタジオの外観" loading="lazy" /></a>
-      <h1 class="consept">撮影スタジオ</h1>
-      <h2 class="consept-sub" v-if="currentIndex === 0">
+        <h1 class="consept">撮影スタジオ
+          <!-- <br />コスプレイヤーによる<br />コスプレイヤーのための<br />コスプレスタジオ -->
+        </h1>
+      <!-- <h2 class="consept-sub" v-if="currentIndex === 0"> -->
+      <h2 class="consept-sub">
         コスプレイヤーによる<br />コスプレイヤーのための<br />コスプレスタジオ
       </h2>
     </div>
@@ -390,6 +393,7 @@ img {
   text-align: center;
   font-family: 'Hiragino Sans W7';
   z-index: 1;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .consept-sub {
@@ -409,6 +413,7 @@ img {
   justify-content: center;
   text-align: center;
   font-family: 'Hiragino Sans W7';
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .box {
@@ -424,6 +429,7 @@ img {
   padding: 0;
   color: white;
   font-family: Impact;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .box > p {
@@ -432,7 +438,8 @@ img {
   padding: 20px;
   color: white;
   text-align: left;
-  font-family: 'Hiragino Sans W7';
+  font-family: 'Noto Sans JP', sans-serif;
+  line-height: 1.5;
 }
 
 .box-a {
@@ -513,10 +520,13 @@ img {
 }
 
 .reserve-contents > p {
+  font-size: 16px;
+  margin: 0;
+  padding: 20px;
   color: white;
   text-align: center;
-  margin-left: 24px;
-  font-family: 'Hiragino Sans W7';
+  font-family: 'Noto Sans JP', sans-serif;
+  line-height: 1.5;
 }
 
 .line-icon {
