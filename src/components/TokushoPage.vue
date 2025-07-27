@@ -17,33 +17,31 @@
 
       <div class="item">
         <h4>販売責任者</h4>
-        <p>（必要に応じて追記）</p>
+        <p>代表社員 高野悠司</p>
       </div>
 
       <div class="item">
         <h4>お問い合わせ</h4>
-        <p>（メールアドレスやお問い合わせフォームURLなど）</p>
+        <p>
+          <a href="https://lin.ee/UblIDG8" target="_blank" rel="noopener">公式LINE</a>・
+          <a href="mailto:takano@dataraw.jp">takano@dataraw.jp</a>
+        </p>
       </div>
 
       <div class="item">
         <h4>販売価格</h4>
-        <p>料金ページに記載</p>
+        <p>当ウェブサイトの料金ページに記載</p>
       </div>
-
-      <!-- <div class="item">
-      <h2>商品代金以外の必要料金</h2>
-      <p>消費税、送料（必要に応じて）</p>
-    </div> -->
 
       <div class="item">
         <h4>お支払い方法</h4>
-        <p>クレジットカード決済・銀行振込（※実際に使っている方法に応じて変更）</p>
+        <p>クレジットカード・PayPay・銀行振込</p>
       </div>
 
-      <!-- <div class="item">
-      <h2>商品引渡時期</h2>
-      <p>決済完了後、直ちにご利用可能です</p>
-    </div> -->
+      <div class="item">
+        <h4>お支払い時期</h4>
+        <p>予約時</p>
+      </div>
 
       <div class="item">
         <h4>キャンセル</h4>
